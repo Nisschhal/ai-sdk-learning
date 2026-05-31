@@ -1,5 +1,6 @@
 "use client"
 import { useState } from "react"
+import ReactMarkdown from "react-markdown"
 
 export default function Home() {
   const [prompt, setPrompt] = useState("")
@@ -41,7 +42,11 @@ export default function Home() {
       <div className="flex flex-1 flex-col gap-2 w-full">
         {error && <p className="text-red-500">{error}</p>}
         {isLoading && <p className="text-gray-500">Loading...</p>}
-        {aiResponse && <p className="text-gray-500">{aiResponse}</p>}
+        {aiResponse && (
+          <div className="prose">
+            <ReactMarkdown>{aiResponse}</ReactMarkdown>
+          </div>
+        )}
       </div>
       <form className="flex gap-2" onSubmit={handleSubmit}>
         <input
